@@ -17,7 +17,7 @@ requires:
 provides:
   Catalyst::Authentication::Credential::Twitter:
     file: lib/Catalyst/Authentication/Credential/Twitter.pm
-    version: 0.01001
+    version: 0.01000
 generated_by: Module::Build version 0.2805
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

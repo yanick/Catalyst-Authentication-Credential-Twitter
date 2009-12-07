@@ -1,37 +1,106 @@
 9
 
 dir
-0
-https://staynalive.svn.beanstalkapp.com/socialtoo/trunk/Catalyst-Authentication-Credential-Twitter-0.01000/t
+408
+https://staynalive.svn.beanstalkapp.com/socialtoo/trunk/Catalyst-Authentication-Credential-Twitter/t
 https://staynalive.svn.beanstalkapp.com/socialtoo
-add
 
 
 
-
-
+2009-12-07T01:43:13.378277Z
+408
+jessestay
 
 
 svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
 
 lib
 dir
-
-
-
-add
 
 02pod.t
 file
 
 
 
-add
+
+2009-12-07T01:35:27.000000Z
+3bfda521021e7f306d42c2a08253ccce
+2009-12-07T01:43:13.378277Z
+408
+jessestay
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+115
 
 03podcoverage.t.disabled
 file
 
 
 
-add
+
+2009-12-07T01:35:27.000000Z
+f4acc693cdc18a9deb19e38f264a863a
+2009-12-07T01:43:13.378277Z
+408
+jessestay
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+213
 

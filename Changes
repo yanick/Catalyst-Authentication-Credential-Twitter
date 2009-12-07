@@ -1,2 +1,4 @@
 0.01000	2009-12-06
 	- Initial release
+0.01001 2009-12-06
+	- share access_tokens in session for registration

@@ -1,23 +1,38 @@
 9
 
 dir
-0
-https://staynalive.svn.beanstalkapp.com/socialtoo/trunk/Catalyst-Authentication-Credential-Twitter-0.01000/lib
+408
+https://staynalive.svn.beanstalkapp.com/socialtoo/trunk/Catalyst-Authentication-Credential-Twitter/lib
 https://staynalive.svn.beanstalkapp.com/socialtoo
-add
 
 
 
-
-
+2009-12-07T01:43:13.378277Z
+408
+jessestay
 
 
 svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
 
 Catalyst
 dir
-
-
-
-add
 
