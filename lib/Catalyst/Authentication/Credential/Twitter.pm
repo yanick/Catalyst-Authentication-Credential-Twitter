@@ -6,7 +6,9 @@ use base qw( Class::Accessor::Fast );
 use Data::Dumper;
 
 BEGIN {
-    __PACKAGE__->mk_accessors(qw/_twitter callback_url consumer_key consumer_secret/);
+    __PACKAGE__->mk_accessors(qw/
+        _twitter twitter_user callback_url consumer_key consumer_secret
+    /);
 }
 
 our $VERSION = "0.01001";
@@ -49,8 +51,8 @@ sub new {
     return $self;
 }
 
-sub authenticate {
-    my ( $self, $c, $realm, $authinfo ) = @_;
+sub authenticate_twitter {
+    my ( $self, $c ) = @_;
 
 	if (!$c->user_session->{'request_token'} || !$c->user_session->{'request_token_secret'} || !$c->req->params->{'oauth_verifier'}) {
 		die 'no request token present, or no verifier';
@@ -83,9 +85,8 @@ sub authenticate {
 	$self->_twitter->access_token($access_token);
     $self->_twitter->access_token_secret($access_token_secret);
 
-	my $twitter_user_hash;
-	eval {
-		$twitter_user_hash = $self->_twitter->verify_credentials();
+	my $twitter_user_hash = eval {
+		$self->_twitter->verify_credentials;
 	};
 
 	if ($@ || !$twitter_user_hash) {
@@ -96,9 +97,19 @@ sub authenticate {
 	$twitter_user_hash->{'access_token'} = $access_token;
 	$twitter_user_hash->{'access_token_secret'} = $access_token_secret;
 
-	if (!$authinfo) {
+    $self->twitter_user( $twitter_user_hash );
+
+    return $twitter_user_hash;
+}
+
+sub authenticate {
+    my ( $self, $c, $realm, $authinfo ) = @_;
+
+	unless ($authinfo) {
+        $self->authenticate_twitter( $c ) unless $self->twitter_user;
+
 		$authinfo = {
-			'twitter_user_id'	=> $twitter_user_hash->{'id'},
+			'twitter_user_id'	=> $self->twitter_user->{'id'},
 		};
 	}
 
@@ -106,10 +117,11 @@ sub authenticate {
 
 	if (ref $user_obj) {
 		if ($user_obj->result_source->has_column('twitter_user') && $user_obj->result_source->has_column('twitter_access_token') && $user_obj->result_source->has_column('twitter_access_token_secret')) {
+            my $twitter_user = $self->twitter_user;
 			$user_obj->update({
-				'twitter_user'					=> $twitter_user_hash->{'screen_name'},
-				'twitter_access_token'			=> $access_token,
-				'twitter_access_token_secret'	=> $access_token_secret,
+				'twitter_user'					=> $twitter_user->{'screen_name'},
+				'twitter_access_token'			=> $twitter_user->{access_token},
+				'twitter_access_token_secret'	=> $twitter_user->{access_token_secret},
 			});
 		}
 		return $user_obj;
@@ -245,6 +257,34 @@ Your database must at least contain a column called "twitter_user_id"
 in your main user table. If the other keys are present they will be
 updated on login with Twitter's most up-to-date information for that
 user.
+
+=head2 authenticate_twitter( )
+
+Only performs the twitter authentication. Returns a hashref containing
+the user's information given by Twitter (see C<authenticate()> above for
+the lists of keys returned).
+
+=head2 twitter_user()
+
+Contains the user's twitter information after a successful twitter
+authentication via C<authenticate_twitter()> or
+C<authenticate()>. Useful if, for example, you want to create users
+on-the-fly:
+
+    sub twitter_callback :Path( 'twitter/callback' ) {
+        my ($self, $c) = @_;
+
+        my $twitter = $c->get_auth_realm('twitter')->credential;
+        my $user =  $twitter->authenticate( $c );
+
+        # properly authenticated against twitter,
+        # user just doesn't exist yet
+        if ( !$user and  $twitter->twitter_user ) {
+            $user = $self->model->create_user( $twitter->twitter_user );
+        }
+
+        # etc
+    }
 
 =head1 AUTHOR
 
