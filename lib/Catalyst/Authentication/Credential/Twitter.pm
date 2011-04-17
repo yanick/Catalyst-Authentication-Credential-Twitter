@@ -1,4 +1,5 @@
 package Catalyst::Authentication::Credential::Twitter;
+# ABSTRACT:  Twitter authentication for Catalyst
 
 use strict;
 use warnings;
@@ -10,8 +11,6 @@ BEGIN {
         _twitter twitter_user callback_url consumer_key consumer_secret
     /);
 }
-
-our $VERSION = '0.02001';
 
 use Catalyst::Exception ();
 use Net::Twitter;
@@ -145,10 +144,6 @@ sub authenticate_twitter_url {
 
     return $uri;
 }
-
-=head1 NAME
-
-Catalyst::Authentication::Credential::Twitter - Twitter authentication for Catalyst
 
 =head1 SYNOPSIS
 
@@ -288,20 +283,6 @@ on-the-fly:
         # etc
     }
 
-=head1 AUTHOR
-
-Jesse Stay
-E<lt>jesse@staynalive.comE<gt>
-L<http://staynalive.com>
-
-=head1 COPYRIGHT
-
-This program is free software; you can redistribute
-it and/or modify it under the same terms as Perl itself.
-
-The full text of the license can be found in the
-LICENSE file included with this module.
-
 =head1 SEE ALSO
 
 L<Catalyst::Plugin::Authentication>, L<Net::Twitter>
@@ -317,4 +298,3 @@ Marc Mims and Chris Thompson for Net::Twitter.
 
 =cut
 
-1;

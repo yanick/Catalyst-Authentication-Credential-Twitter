@@ -5,6 +5,7 @@ blib
 dist.ini
 _build
 Catalyst-Plugin-Authentication-Credential-Twitter-.*
+Catalyst-Authentication-Credential-Twitter-.*
 ^MYMETA.yml$
 \.git
 Build$
