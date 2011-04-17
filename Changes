@@ -1,6 +1,7 @@
 0.02000
     - Break the authentication process in two
     - Cleaned up subversion files.
+    - Add some tests.
 0.01001 2009-12-06
 	- Share access_tokens in session for registration
 0.01000	2009-12-06

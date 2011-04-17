@@ -20,10 +20,6 @@ our $VERSION = "0.01001";
 use Catalyst::Exception ();
 use Net::Twitter;
 
-use Catalyst qw/
-	Session::PerUser
-/;
-
 sub new {
     my ($class, $config, $c, $realm) = @_;
     my $self = {};
@@ -162,6 +158,7 @@ In MyApp.pm
     Session
     Session::Store::FastMmap
     Session::State::Cookie
+	Session::PerUser
  /;
  
  MyApp->config(
