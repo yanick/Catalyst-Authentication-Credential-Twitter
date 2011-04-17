@@ -11,11 +11,7 @@ BEGIN {
     /);
 }
 
-our $VERSION = "0.01001";
-# release notes:
-#
-# 0.01 - initial release - 12-06-2009
-# 0.01001 - share access_tokens in session for registration - 12-06-2009
+our $VERSION = '0.02000';
 
 use Catalyst::Exception ();
 use Net::Twitter;

@@ -3,3 +3,4 @@ blib
 Makefile
 MYMETA.yml
 Build
+Catalyst-Plugin-Authentication-Credential-Twitter*
