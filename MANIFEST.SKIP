@@ -1,2 +1,10 @@
+MANIFEST\.SKIP
 \.svn
 .gitignore
+blib
+dist.ini
+_build
+Catalyst-Plugin-Authentication-Credential-Twitter-.*
+^MYMETA.yml$
+\.git
+Build$

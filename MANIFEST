@@ -7,3 +7,6 @@ META.yml
 README
 t/02pod.t
 t/03podcoverage.t.disabled
+t/basic_app.t
+t/lib/TestApp.pm
+t/lib/TestApp/Controller/Root.pm
