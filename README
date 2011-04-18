@@ -10,9 +10,10 @@ SYNOPSIS
         Session
         Session::Store::FastMmap
         Session::State::Cookie
+            Session::PerUser
      /;
-     
- MyApp->config(
+ 
+     MyApp->config(
          "Plugin::Authentication" => {
              default_realm => "twitter",
              realms => {
@@ -37,8 +38,8 @@ SYNOPSIS
 
      sub login : Local {
         my ($self, $c) = @_;
-        
-    my $realm = $c->get_auth_realm('twitter');
+    
+        my $realm = $c->get_auth_realm('twitter');
         $c->res->redirect( $realm->credential->authenticate_twitter_url($c) );
      }
 
@@ -47,8 +48,8 @@ SYNOPSIS
 
      sub callback : Local {
         my ($self, $c) = @_;
-        
-    if (my $user = $c->authenticate(undef,'twitter')) {
+    
+        if (my $user = $c->authenticate(undef,'twitter')) {
                     # user has an account - redirect or do something cool
             $c->res->redirect("/super/secret/member/area");
             }
@@ -97,6 +98,31 @@ METHODS
     Your database must at least contain a column called "twitter_user_id" in
     your main user table. If the other keys are present they will be updated
     on login with Twitter's most up-to-date information for that user.
+
+  authenticate_twitter( )
+    Only performs the twitter authentication. Returns a hashref containing
+    the user's information given by Twitter (see "authenticate()" above for
+    the lists of keys returned).
+
+  twitter_user()
+    Contains the user's twitter information after a successful twitter
+    authentication via "authenticate_twitter()" or "authenticate()". Useful
+    if, for example, you want to create users on-the-fly:
+
+        sub twitter_callback :Path( 'twitter/callback' ) {
+            my ($self, $c) = @_;
+
+            my $twitter = $c->get_auth_realm('twitter')->credential;
+            my $user =  $twitter->authenticate( $c );
+
+            # properly authenticated against twitter,
+            # user just doesn't exist yet
+            if ( !$user and  $twitter->twitter_user ) {
+                $user = $self->model->create_user( $twitter->twitter_user );
+            }
+
+            # etc
+        }
 
 AUTHOR
     Jesse Stay <jesse@staynalive.com> <http://staynalive.com>

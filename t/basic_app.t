@@ -2,12 +2,12 @@
 use strict;
 
 use Test::More;
-eval { use Test::WWW::Mechanize::Catalyst; 1 }
+eval " use Test::WWW::Mechanize::Catalyst; 1 "
     or plan skip_all => 'test requires Test::WWW::Mechanize::Catalyst';
 
 use lib 't/lib';
 
-eval { use Test::MockObject; 1 }
+eval " use Test::MockObject; 1 "
     or plan skip_all => 'test requires Test::MockObject';
 
 my $twitter = Test::MockObject->new;

@@ -1,24 +1,24 @@
 ---
-name: Catalyst-Authentication-Credential-Twitter
-version: 0.01000
+abstract: 'Twitter authentication for Catalyst'
 author:
-  - 'Jesse Stay (jessestay) <jesse@staynalive.com>'
-  - |-
-        A SocialToo.com Product
-abstract: Twitter authentication module for Catalyst
+  - "Jesse Stay\nE<lt>jesse@staynalive.comE<gt>\nL<http://staynalive.com>"
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
 license: perl
-resources:
-  license: http://dev.perl.org/licenses/
-requires:
-  DBIx::Class: 0.06002
-  Net::Twitter: 3.10001
-  Catalyst::Plugin::Session::PerUser: 0.04
-  Catalyst: 5.80007
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Catalyst-Authentication-Credential-Twitter
 provides:
   Catalyst::Authentication::Credential::Twitter:
     file: lib/Catalyst/Authentication/Credential/Twitter.pm
-    version: 0.01001
-generated_by: Module::Build version 0.2805
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+    version: 0.02001
+requires:
+  Catalyst: 5.80007
+  Catalyst::Plugin::Session::PerUser: 0.04
+  DBIx::Class: 0.06002
+  Net::Twitter: 3.10001
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.02001

@@ -11,7 +11,7 @@ BEGIN {
     /);
 }
 
-our $VERSION = '0.02000';
+our $VERSION = '0.02001';
 
 use Catalyst::Exception ();
 use Net::Twitter;
