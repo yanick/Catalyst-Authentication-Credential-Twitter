@@ -16,10 +16,15 @@ our $VERSION = '0.02001';
 use Catalyst::Exception ();
 use Net::Twitter;
 
+my $check_for_user_session;
+
 sub new {
     my ($class, $config, $c, $realm) = @_;
     my $self = {};
     bless $self, $class;
+
+    die "context method 'user_session' not present. "
+        ."Have you loaded Catalyst::Plugin::Session::PerUser ?" unless $c->can( 'user_session' );
 
     # Hack to make lookup of the configuration parameters less painful
     my $params = { %{ $config }, %{ $realm->{config} } };
@@ -210,6 +215,10 @@ example.com/twitter/callback/ ):
 =head1 DESCRIPTION
 
 This module handles Twitter API authentication in a Catalyst application.
+
+Note that I<Catalyst::Authentication::Credential::Twitter> needs
+the catalyst application to also load L<Catalyst::Plugin::Session::PerUser>
+to be functional.
 
 =head1 METHODS
 

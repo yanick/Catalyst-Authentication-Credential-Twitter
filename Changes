@@ -1,3 +1,8 @@
+xxx
+    - Check if Catalyst::Plugin::Session::PerUser is active on
+        first use, and die with a meaningful message if it's not.
+
+
 0.02001
     - Don't have the test fail if 
         WWW::Test::Catalyst::Mechanized is
