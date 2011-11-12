@@ -145,6 +145,8 @@ sub authenticate_twitter_url {
     return $uri;
 }
 
+1;
+
 =head1 SYNOPSIS
 
 In MyApp.pm
