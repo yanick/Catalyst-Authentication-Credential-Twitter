@@ -1,6 +1,8 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
 {{$NEXT}}
+
+0.02002   2011-11-11
  [BUG FIXES]
     - Check if Catalyst::Plugin::Session::PerUser is active on
         first use, and die with a meaningful message if it's not. [RT66543]
