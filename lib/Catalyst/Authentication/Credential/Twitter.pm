@@ -289,9 +289,21 @@ on-the-fly:
 
 L<Catalyst::Plugin::Authentication>, L<Net::Twitter>
 
-=head1 BUGS
+=head1 BUGS AND LIMITATIONS
 
-C<Bugs? Impossible!>. Please report bugs to L<http://rt.cpan.org/Ticket/Create.html?Queue=Catalyst-Authentication-Credential-Twitter>
+C<Catalyst::Authentication::Credential::Twitter> works well 
+with L<Catalyst::Authentication::Store::DBIx::Class>, but might 
+have problem with other stores, as its C<authenticate()> method uses
+
+    $realm->find_user({
+        twitter_user_id => $authenticated_twitter_id
+    }, $c);
+
+to find the user. If this causes a problem for your store, 
+you can get around it by using C<authenticate_twitter()> and
+accessing the store manually.
+
+Please report bugs to L<http://rt.cpan.org/Ticket/Create.html?Queue=Catalyst-Authentication-Credential-Twitter>
 
 =head1 THANKS
 

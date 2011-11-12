@@ -1,6 +1,8 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
 {{$NEXT}}
+  [DOCUMENTATION]
+    - Spell out limitation with the stores.
 
 0.02002   2011-11-11
  [BUG FIXES]
