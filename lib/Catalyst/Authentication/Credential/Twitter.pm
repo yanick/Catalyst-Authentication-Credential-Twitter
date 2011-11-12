@@ -1,4 +1,11 @@
 package Catalyst::Authentication::Credential::Twitter;
+BEGIN {
+  $Catalyst::Authentication::Credential::Twitter::AUTHORITY = 'cpan:JESSESTAY';
+}
+{
+  $Catalyst::Authentication::Credential::Twitter::VERSION = '0.02002';
+}
+# ABSTRACT:  Twitter authentication for Catalyst
 
 use strict;
 use warnings;
@@ -11,15 +18,18 @@ BEGIN {
     /);
 }
 
-our $VERSION = '0.02001';
-
 use Catalyst::Exception ();
 use Net::Twitter;
+
+my $check_for_user_session;
 
 sub new {
     my ($class, $config, $c, $realm) = @_;
     my $self = {};
     bless $self, $class;
+
+    die "context method 'user_session' not present. "
+        ."Have you loaded Catalyst::Plugin::Session::PerUser ?" unless $c->can( 'user_session' );
 
     # Hack to make lookup of the configuration parameters less painful
     my $params = { %{ $config }, %{ $realm->{config} } };
@@ -141,9 +151,20 @@ sub authenticate_twitter_url {
     return $uri;
 }
 
+1;
+
+
+
+__END__
+=pod
+
 =head1 NAME
 
 Catalyst::Authentication::Credential::Twitter - Twitter authentication for Catalyst
+
+=head1 VERSION
+
+version 0.02002
 
 =head1 SYNOPSIS
 
@@ -210,6 +231,10 @@ example.com/twitter/callback/ ):
 =head1 DESCRIPTION
 
 This module handles Twitter API authentication in a Catalyst application.
+
+Note that I<Catalyst::Authentication::Credential::Twitter> needs
+the catalyst application to also load L<Catalyst::Plugin::Session::PerUser>
+to be functional.
 
 =head1 METHODS
 
@@ -279,20 +304,6 @@ on-the-fly:
         # etc
     }
 
-=head1 AUTHOR
-
-Jesse Stay
-E<lt>jesse@staynalive.comE<gt>
-L<http://staynalive.com>
-
-=head1 COPYRIGHT
-
-This program is free software; you can redistribute
-it and/or modify it under the same terms as Perl itself.
-
-The full text of the license can be found in the
-LICENSE file included with this module.
-
 =head1 SEE ALSO
 
 L<Catalyst::Plugin::Authentication>, L<Net::Twitter>
@@ -306,6 +317,16 @@ C<Bugs? Impossible!>. Please report bugs to L<http://rt.cpan.org/Ticket/Create.h
 Thanks go out Daisuke Murase for writing C::P::A::Credential::Flickr,
 Marc Mims and Chris Thompson for Net::Twitter.
 
+=head1 AUTHOR
+
+Jesse Stay <jesse@staynalive.com>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2009 by Jesse Stay.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
 =cut
 
-1;

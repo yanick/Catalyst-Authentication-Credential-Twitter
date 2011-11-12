@@ -1,0 +1,42 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 0203a5e1aea6f11151ea506a2e526dfc88c53c77 Build.PL
+SHA1 1ba71d797b181a4bb428a789c576809ebdb88096 Changes
+SHA1 334c033951ccf720e409dddbc135a8aac05c9c14 INSTALL
+SHA1 e6b1face759e9f4dce5e6a231db5e108ee6b528c LICENSE
+SHA1 562d45dd92ad92460490dc76cb6c9c154d70e1ff MANIFEST
+SHA1 56bd70aec9a8a418754e6673247ed4bcb578f968 META.json
+SHA1 7e9bdcf682585f16930af84519f189370f152594 META.yml
+SHA1 48f8c65a2d0c2af7fb24ba3b32c89ace27fa2fee README
+SHA1 bc3a3a00e934549b3145306f7f70f85025c4c1f8 README.mkdn
+SHA1 7273ababe482b8385d79cdee7e1739117c3a4bcf lib/Catalyst/Authentication/Credential/Twitter.pm
+SHA1 473906254ecd96009795d4b7fbc82fac48c03ecd t/000-report-versions.t
+SHA1 39becf9564fd91fa0674530f8c1c248a29b86015 t/02pod.t
+SHA1 e923679a1bbd8eb8f727e46f5906af25de27ec97 t/03podcoverage.t.disabled
+SHA1 ea23702c9745bbb78c985c485a86250d6db5bfee t/basic_app.t
+SHA1 72e18d13aff0b5b49a35cfaa23276969bd12e58d t/lib/TestApp.pm
+SHA1 6d1b0e2cf7360e990d21164b30ebbf5df271aa97 t/lib/TestApp/Controller/Root.pm
+SHA1 a507499eb734aefb423d06c91e941bf1020ccddc t/lib/TestApp2.pm
+SHA1 ba8c2123a974845cda80a7bc651407b3060a56dc t/lib/TestApp2/Controller/Root.pm
+SHA1 913f8dba0ebfbdc2754452c2c75649b716bff22c t/no_per_user.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAk69+acACgkQ34Hwf+GwC4yqyQCdE8ldANNUpHL7rp9Xc0as+5KC
+FtAAn0D9bA/V5OlbKibCcwxYmasSg4tY
+=fUPC
+-----END PGP SIGNATURE-----

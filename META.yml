@@ -1,10 +1,20 @@
 ---
 abstract: 'Twitter authentication for Catalyst'
 author:
-  - "Jesse Stay\nE<lt>jesse@staynalive.comE<gt>\nL<http://staynalive.com>"
+  - 'Jesse Stay <jesse@staynalive.com>'
+build_requires:
+  Carp: 0
+  Catalyst: 0
+  Catalyst::Controller: 0
+  Module::Build: 0.3601
+  Scalar::Util: 0
+  Test::More: 0.94
+  parent: 0
+  perl: 5.004
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3603'
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112150'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -13,12 +23,18 @@ name: Catalyst-Authentication-Credential-Twitter
 provides:
   Catalyst::Authentication::Credential::Twitter:
     file: lib/Catalyst/Authentication/Credential/Twitter.pm
-    version: 0.02001
+    version: 0.02002
 requires:
-  Catalyst: 5.80007
-  Catalyst::Plugin::Session::PerUser: 0.04
-  DBIx::Class: 0.06002
-  Net::Twitter: 3.10001
+  Catalyst::Exception: 0
+  Class::Accessor::Fast: 0
+  Data::Dumper: 0
+  Net::Twitter: 0
+  base: 0
+  strict: 0
+  warnings: 0
 resources:
-  license: http://dev.perl.org/licenses/
-version: 0.02001
+  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Authentication-Credential-Twitter
+  homepage: http://search.cpan.org/dist/Catalyst-Authentication-Credential-Twitter/
+  repository: https://github.com/yanick/Catalyst-Authentication-Credential-Twitter.git
+version: 0.02002
+x_authority: cpan:JESSESTAY

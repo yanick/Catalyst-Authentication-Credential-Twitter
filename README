@@ -2,6 +2,9 @@ NAME
     Catalyst::Authentication::Credential::Twitter - Twitter authentication
     for Catalyst
 
+VERSION
+    version 0.02002
+
 SYNOPSIS
     In MyApp.pm
 
@@ -67,6 +70,10 @@ DESCRIPTION
     This module handles Twitter API authentication in a Catalyst
     application.
 
+    Note that *Catalyst::Authentication::Credential::Twitter* needs the
+    catalyst application to also load Catalyst::Plugin::Session::PerUser to
+    be functional.
+
 METHODS
     As per guidelines of Catalyst::Plugin::Authentication, there are two
     mandatory methods, "new" and "authenticate". Since this is not really
@@ -124,16 +131,6 @@ METHODS
             # etc
         }
 
-AUTHOR
-    Jesse Stay <jesse@staynalive.com> <http://staynalive.com>
-
-COPYRIGHT
-    This program is free software; you can redistribute it and/or modify it
-    under the same terms as Perl itself.
-
-    The full text of the license can be found in the LICENSE file included
-    with this module.
-
 SEE ALSO
     Catalyst::Plugin::Authentication, Net::Twitter
 
@@ -145,4 +142,13 @@ BUGS
 THANKS
     Thanks go out Daisuke Murase for writing C::P::A::Credential::Flickr,
     Marc Mims and Chris Thompson for Net::Twitter.
+
+AUTHOR
+    Jesse Stay <jesse@staynalive.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2009 by Jesse Stay.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 

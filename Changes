@@ -1,12 +1,20 @@
-0.02001
-    - Don't have the test fail if 
-        WWW::Test::Catalyst::Mechanized is
-        not installed.
-0.02000
+Revision history for Catalyst-Authentication-Credential-Twitter
+
+0.02002   2011-11-11
+ [BUG FIXES]
+    - Check if Catalyst::Plugin::Session::PerUser is active on
+        first use, and die with a meaningful message if it's not. [RT66543]
+
+0.02001 2011-04-17
+    - Don't have the test fail if WWW::Test::Catalyst::Mechanized is not installed.
+
+0.02000 2011-04-17
     - Break the authentication process in two
     - Cleaned up subversion files.
     - Add some tests.
+
 0.01001 2009-12-06
 	- Share access_tokens in session for registration
+
 0.01000	2009-12-06
 	- Initial release

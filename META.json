@@ -1,0 +1,72 @@
+{
+   "abstract" : "Twitter authentication for Catalyst",
+   "author" : [
+      "Jesse Stay <jesse@staynalive.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112150",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Catalyst-Authentication-Credential-Twitter",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Catalyst::Exception" : 0,
+            "Class::Accessor::Fast" : 0,
+            "Data::Dumper" : 0,
+            "Net::Twitter" : 0,
+            "base" : 0,
+            "strict" : 0,
+            "warnings" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Carp" : 0,
+            "Catalyst" : 0,
+            "Catalyst::Controller" : 0,
+            "Scalar::Util" : 0,
+            "Test::More" : "0.94",
+            "parent" : 0,
+            "perl" : "5.004"
+         }
+      }
+   },
+   "provides" : {
+      "Catalyst::Authentication::Credential::Twitter" : {
+         "file" : "lib/Catalyst/Authentication/Credential/Twitter.pm",
+         "version" : "0.02002"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "mailto" : "bug-catalyst-authentication-credential-twitter at rt.cpan.org",
+         "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Authentication-Credential-Twitter"
+      },
+      "homepage" : "http://search.cpan.org/dist/Catalyst-Authentication-Credential-Twitter/",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/yanick/Catalyst-Authentication-Credential-Twitter.git",
+         "web" : "https://github.com/yanick/Catalyst-Authentication-Credential-Twitter"
+      }
+   },
+   "version" : "0.02002",
+   "x_authority" : "cpan:JESSESTAY"
+}
+
