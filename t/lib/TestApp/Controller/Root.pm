@@ -27,4 +27,12 @@ sub auth :Path('/auth') {
 
 }
 
+sub authenticate :Path('/authenticate') {
+    my ( $self, $c ) = @_;
+
+    my $res = $c->authenticate(undef,'twitter');
+
+    $c->res->body( $res->{twitter_user_id} );
+}
+
 1;

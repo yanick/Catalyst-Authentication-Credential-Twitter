@@ -21,6 +21,7 @@ $twitter->set_always( access_token => 'access_token' );
 $twitter->set_always( access_token_secret => 'access_token_secret' );
 $twitter->mock( 'verify_credentials' => sub { 
         return {
+            id => 'yanick',
             access_token => 'alpha',
             access_token_secret => 'beta',
         };
@@ -31,7 +32,6 @@ $twitter->mock( 'verify_credentials' => sub {
 for my $plugin ( qw/ 
     Authentication 
     Session 
-    Session::Store::FastMmap
     Session::State::Cookie 
     / ) {
     my $module = "Catalyst::Plugin::$plugin";
@@ -47,6 +47,9 @@ $mech->get_ok('/login');
 $mech->content_contains( 'http://twit/auth' );
 
 $mech->get_ok( '/auth?oauth_verifier=oauth' );
+
+$mech->get_ok( '/authenticate' );
+$mech->content_contains( 'yanick' );
 
 done_testing();
 

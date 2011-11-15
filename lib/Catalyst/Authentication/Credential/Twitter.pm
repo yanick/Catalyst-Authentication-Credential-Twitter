@@ -111,8 +111,12 @@ sub authenticate {
 
     my $user_obj = $realm->find_user($authinfo, $c);
 
-	if (ref $user_obj) {
-		if ($user_obj->result_source->has_column('twitter_user') && $user_obj->result_source->has_column('twitter_access_token') && $user_obj->result_source->has_column('twitter_access_token_secret')) {
+    return undef unless ref $user_obj;
+
+    eval { 
+		if (   $user_obj->result_source->has_column('twitter_user') 
+            && $user_obj->result_source->has_column('twitter_access_token') 
+            && $user_obj->result_source->has_column('twitter_access_token_secret')) {
             my $twitter_user = $self->twitter_user;
 			$user_obj->update({
 				'twitter_user'					=> $twitter_user->{'screen_name'},
@@ -120,10 +124,10 @@ sub authenticate {
 				'twitter_access_token_secret'	=> $twitter_user->{access_token_secret},
 			});
 		}
-		return $user_obj;
-	}
+    };
 
-    return undef;
+    return $user_obj;
+
 }
     
 sub authenticate_twitter_url {
