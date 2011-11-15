@@ -18,6 +18,7 @@ __PACKAGE__->config(
         realms => {
             twitter => { 
                 credential => { class => "Twitter", },
+                store => { class => 'Null' },
                 consumer_key    => 'twitter-consumer_key-here',
                 consumer_secret => 'twitter-secret-here',
                 callback_url => 'http://homysite.com/callback',

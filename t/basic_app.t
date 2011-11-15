@@ -13,7 +13,7 @@ eval " use Test::MockObject; 1 "
 my $twitter = Test::MockObject->new;
 $twitter->fake_module( 'Net::Twitter' );
 $twitter->fake_new( 'Net::Twitter' );
-$twitter->set_always( get_authorization_url => 'http://twit/auth' );
+$twitter->set_always( get_authentication_url => 'http://twit/auth' );
 $twitter->set_always( request_token => 'abc' );
 $twitter->set_always( request_token_secret => 'hush' );
 $twitter->set_always( request_access_token => 'request_access_token' );

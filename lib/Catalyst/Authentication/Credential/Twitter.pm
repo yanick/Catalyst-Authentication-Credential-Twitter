@@ -140,7 +140,7 @@ sub authenticate_twitter_url {
         'consumer_secret'	=> $self->consumer_secret,
 	));
 
-    my $uri = $self->_twitter->get_authorization_url( 'callback'	=> $c->config->{'twitter_callback_url'} || $self->callback_url );
+    my $uri = $self->_twitter->get_authentication_url( 'callback'	=> $c->config->{'twitter_callback_url'} || $self->callback_url );
 	$c->user_session->{'request_token'} = $self->_twitter->request_token;
 	$c->user_session->{'request_token_secret'} = $self->_twitter->request_token_secret;
 	$c->user_session->{'access_token'} = '';
