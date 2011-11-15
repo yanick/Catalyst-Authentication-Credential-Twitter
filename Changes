@@ -1,6 +1,8 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
 {{$NEXT}}
+
+0.03000   2011-11-14
   [ENHANCEMENTS]
     - change get_authorization_url() for get_authentication_url(), which
 bypass the authorize page if the user has already authorized the app.
