@@ -3,7 +3,7 @@ BEGIN {
   $Catalyst::Authentication::Credential::Twitter::AUTHORITY = 'cpan:JESSESTAY';
 }
 {
-  $Catalyst::Authentication::Credential::Twitter::VERSION = '0.02002';
+  $Catalyst::Authentication::Credential::Twitter::VERSION = '0.03000';
 }
 # ABSTRACT:  Twitter authentication for Catalyst
 
@@ -117,8 +117,12 @@ sub authenticate {
 
     my $user_obj = $realm->find_user($authinfo, $c);
 
-	if (ref $user_obj) {
-		if ($user_obj->result_source->has_column('twitter_user') && $user_obj->result_source->has_column('twitter_access_token') && $user_obj->result_source->has_column('twitter_access_token_secret')) {
+    return undef unless ref $user_obj;
+
+    eval { 
+		if (   $user_obj->result_source->has_column('twitter_user') 
+            && $user_obj->result_source->has_column('twitter_access_token') 
+            && $user_obj->result_source->has_column('twitter_access_token_secret')) {
             my $twitter_user = $self->twitter_user;
 			$user_obj->update({
 				'twitter_user'					=> $twitter_user->{'screen_name'},
@@ -126,10 +130,10 @@ sub authenticate {
 				'twitter_access_token_secret'	=> $twitter_user->{access_token_secret},
 			});
 		}
-		return $user_obj;
-	}
+    };
 
-    return undef;
+    return $user_obj;
+
 }
     
 sub authenticate_twitter_url {
@@ -142,7 +146,7 @@ sub authenticate_twitter_url {
         'consumer_secret'	=> $self->consumer_secret,
 	));
 
-    my $uri = $self->_twitter->get_authorization_url( 'callback'	=> $c->config->{'twitter_callback_url'} || $self->callback_url );
+    my $uri = $self->_twitter->get_authentication_url( 'callback'	=> $c->config->{'twitter_callback_url'} || $self->callback_url );
 	$c->user_session->{'request_token'} = $self->_twitter->request_token;
 	$c->user_session->{'request_token_secret'} = $self->_twitter->request_token_secret;
 	$c->user_session->{'access_token'} = '';
@@ -164,7 +168,7 @@ Catalyst::Authentication::Credential::Twitter - Twitter authentication for Catal
 
 =head1 VERSION
 
-version 0.02002
+version 0.03000
 
 =head1 SYNOPSIS
 
@@ -308,9 +312,21 @@ on-the-fly:
 
 L<Catalyst::Plugin::Authentication>, L<Net::Twitter>
 
-=head1 BUGS
+=head1 BUGS AND LIMITATIONS
 
-C<Bugs? Impossible!>. Please report bugs to L<http://rt.cpan.org/Ticket/Create.html?Queue=Catalyst-Authentication-Credential-Twitter>
+C<Catalyst::Authentication::Credential::Twitter> works well 
+with L<Catalyst::Authentication::Store::DBIx::Class>, but might 
+have problem with other stores, as its C<authenticate()> method uses
+
+    $realm->find_user({
+        twitter_user_id => $authenticated_twitter_id
+    }, $c);
+
+to find the user. If this causes a problem for your store, 
+you can get around it by using C<authenticate_twitter()> and
+accessing the store manually.
+
+Please report bugs to L<http://rt.cpan.org/Ticket/Create.html?Queue=Catalyst-Authentication-Credential-Twitter>
 
 =head1 THANKS
 

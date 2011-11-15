@@ -1,5 +1,17 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
+0.03000   2011-11-14
+  [ENHANCEMENTS]
+    - change get_authorization_url() for get_authentication_url(), which
+bypass the authorize page if the user has already authorized the app.
+    (thanks to Francoise Dehinbo for the suggestion)
+
+  [BUG FIXES]
+    - Ensure that authenticate() doesn't explode if store is not DBIx::Class.
+
+  [DOCUMENTATION]
+    - Spell out limitation with the stores.
+
 0.02002   2011-11-11
  [BUG FIXES]
     - Check if Catalyst::Plugin::Session::PerUser is active on
