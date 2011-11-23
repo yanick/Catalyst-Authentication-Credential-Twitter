@@ -1,5 +1,9 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
+0.03001   2011-11-22
+  [BUG FIXES]
+  - Add 'Catalyst::Plugin::Session::PerUser' to the list of dependencies.
+
 0.03000   2011-11-14
   [ENHANCEMENTS]
     - change get_authorization_url() for get_authentication_url(), which

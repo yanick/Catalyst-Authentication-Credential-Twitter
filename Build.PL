@@ -24,13 +24,14 @@ my %module_build_args = (
     "Jesse Stay <jesse\@staynalive.com>"
   ],
   "dist_name" => "Catalyst-Authentication-Credential-Twitter",
-  "dist_version" => "0.03000",
+  "dist_version" => "0.03001",
   "license" => "perl",
   "module_name" => "Catalyst::Authentication::Credential::Twitter",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
     "Catalyst::Exception" => 0,
+    "Catalyst::Plugin::Session::PerUser" => 0,
     "Class::Accessor::Fast" => 0,
     "Data::Dumper" => 0,
     "Net::Twitter" => 0,

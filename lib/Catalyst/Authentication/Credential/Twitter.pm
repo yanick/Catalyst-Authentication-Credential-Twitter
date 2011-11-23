@@ -3,7 +3,7 @@ BEGIN {
   $Catalyst::Authentication::Credential::Twitter::AUTHORITY = 'cpan:JESSESTAY';
 }
 {
-  $Catalyst::Authentication::Credential::Twitter::VERSION = '0.03000';
+  $Catalyst::Authentication::Credential::Twitter::VERSION = '0.03001';
 }
 # ABSTRACT:  Twitter authentication for Catalyst
 
@@ -168,7 +168,7 @@ Catalyst::Authentication::Credential::Twitter - Twitter authentication for Catal
 
 =head1 VERSION
 
-version 0.03000
+version 0.03001
 
 =head1 SYNOPSIS
 
