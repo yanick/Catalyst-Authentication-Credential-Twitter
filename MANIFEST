@@ -1,3 +1,4 @@
+AUTHOR_PLEDGE
 Build.PL
 Changes
 INSTALL
@@ -9,6 +10,7 @@ README
 README.mkdn
 SIGNATURE
 lib/Catalyst/Authentication/Credential/Twitter.pm
+t/00-compile.t
 t/000-report-versions.t
 t/02pod.t
 t/03podcoverage.t.disabled
