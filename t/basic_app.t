@@ -10,6 +10,9 @@ use lib 't/lib';
 eval " use Test::MockObject; 1 "
     or plan skip_all => 'test requires Test::MockObject';
 
+eval "use Catalyst::Plugin::Session::Store::FastMmap; 1"
+    or plan skip_all => 'test requires Catalyst::Plugin::Session::Store::FastMmap';
+
 my $twitter = Test::MockObject->new;
 $twitter->fake_module( 'Net::Twitter' );
 $twitter->fake_new( 'Net::Twitter' );
@@ -19,13 +22,23 @@ $twitter->set_always( request_token_secret => 'hush' );
 $twitter->set_always( request_access_token => 'request_access_token' );
 $twitter->set_always( access_token => 'access_token' );
 $twitter->set_always( access_token_secret => 'access_token_secret' );
+
+my @users = (
+{
+    id => 'yanick',
+    access_token => 'alpha',
+    access_token_secret => 'beta',
+},
+{
+    id => 'wilfred',
+    access_token => 'delta',
+    access_token_secret => 'gamma',
+},
+);
+
 $twitter->mock( 'verify_credentials' => sub { 
-        return {
-            id => 'yanick',
-            access_token => 'alpha',
-            access_token_secret => 'beta',
-        };
-    } );
+        return shift @users;
+} );
 
 
 # all used by TestApp
@@ -50,6 +63,14 @@ $mech->get_ok( '/auth?oauth_verifier=oauth' );
 
 $mech->get_ok( '/authenticate' );
 $mech->content_contains( 'yanick' );
+
+$mech->get_ok( '/auth?oauth_verifier=oauth' );
+
+$mech->get_ok( '/authenticate' );
+$mech->content_contains( 'wilfred' );
+
+$mech->get_ok( '/oops' );
+$mech->content_contains( '' );
 
 done_testing();
 
