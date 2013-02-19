@@ -8,7 +8,7 @@ use Data::Dumper;
 
 BEGIN {
     __PACKAGE__->mk_accessors(qw/
-        _twitter callback_url consumer_key consumer_secret
+        _twitter twitter_user callback_url consumer_key consumer_secret
     /);
 }
 
@@ -47,16 +47,6 @@ sub new {
 
     return $self;
 }
-
-sub twitter_user {
-    my( $self, $c ) = (shift, shift);
-
-    if ( @_ ) {
-        $c->user_session->{twitter_user} = shift;
-    }
-
-    return $c->user_session->{twitter_user} || {};
-};
 
 sub authenticate_twitter {
     my ( $self, $c ) = @_;
@@ -104,7 +94,7 @@ sub authenticate_twitter {
 	$twitter_user_hash->{'access_token'} = $access_token;
 	$twitter_user_hash->{'access_token_secret'} = $access_token_secret;
 
-    $self->twitter_user( $c, $twitter_user_hash );
+    $self->twitter_user( $twitter_user_hash );
 
     return $twitter_user_hash;
 }
@@ -113,10 +103,10 @@ sub authenticate {
     my ( $self, $c, $realm, $authinfo ) = @_;
 
 	unless ($authinfo) {
-        $self->authenticate_twitter( $c ) unless $self->twitter_user($c);
+        $self->authenticate_twitter( $c ) unless $self->twitter_user;
 
 		$authinfo = {
-			'twitter_user_id'	=> $self->twitter_user($c)->{'id'},
+			'twitter_user_id'	=> $self->twitter_user->{'id'},
 		};
 	}
 
@@ -128,7 +118,7 @@ sub authenticate {
 		if (   $user_obj->result_source->has_column('twitter_user') 
             && $user_obj->result_source->has_column('twitter_access_token') 
             && $user_obj->result_source->has_column('twitter_access_token_secret')) {
-            my $twitter_user = $self->twitter_user($c);
+            my $twitter_user = $self->twitter_user;
 			$user_obj->update({
 				'twitter_user'					=> $twitter_user->{'screen_name'},
 				'twitter_access_token'			=> $twitter_user->{access_token},
