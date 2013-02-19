@@ -69,7 +69,7 @@ $mech->get_ok( '/auth?oauth_verifier=oauth' );
 $mech->get_ok( '/authenticate' );
 $mech->content_contains( 'wilfred' );
 
-$mech->get_ok( '/oops' );
+$mech->get_ok( '/leaking_users' );
 $mech->content_contains( '' );
 
 done_testing();
