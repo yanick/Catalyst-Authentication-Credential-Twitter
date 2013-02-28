@@ -36,41 +36,47 @@ my @users = (
 },
 );
 
-$twitter->mock( 'verify_credentials' => sub { 
+$twitter->mock( 'verify_credentials' => sub {
         return shift @users;
 } );
 
 
 # all used by TestApp
-for my $plugin ( qw/ 
-    Authentication 
-    Session 
-    Session::State::Cookie 
+for my $plugin ( qw/
+    Authentication
+    Session
+    Session::State::Cookie
     / ) {
     my $module = "Catalyst::Plugin::$plugin";
     eval "use $module; 1" or plan skip_all => "test requires $module";
 }
 
-my $mech = Test::WWW::Mechanize::Catalyst->new(catalyst_app => 'TestApp');
+# Create two separate mech objects to simulate two simultaneous sessions,
+# to make sure that user authentication doesn't leak between them.
+my $yanick_mech  = Test::WWW::Mechanize::Catalyst->new(catalyst_app => 'TestApp');
+my $wilfred_mech = Test::WWW::Mechanize::Catalyst->new(catalyst_app => 'TestApp');
 
-$mech->get_ok('/index');
+# Log in user 'yanick'.
+$yanick_mech->get_ok('/index');
+$yanick_mech->get_ok('/login');
+$yanick_mech->content_contains( 'http://twit/auth' );
+$yanick_mech->get_ok( '/auth?oauth_verifier=oauth' );
+$yanick_mech->get_ok( '/authenticate' );
+$yanick_mech->content_contains( 'yanick' );
 
-$mech->get_ok('/login');
+# Log in user 'wilfred'.
+$wilfred_mech->get_ok('/index');
+$wilfred_mech->get_ok('/login');
+$wilfred_mech->content_contains( 'http://twit/auth' );
+$wilfred_mech->get_ok( '/auth?oauth_verifier=oauth' );
+$wilfred_mech->get_ok( '/authenticate' );
+$wilfred_mech->content_contains( 'wilfred' );
 
-$mech->content_contains( 'http://twit/auth' );
-
-$mech->get_ok( '/auth?oauth_verifier=oauth' );
-
-$mech->get_ok( '/authenticate' );
-$mech->content_contains( 'yanick' );
-
-$mech->get_ok( '/auth?oauth_verifier=oauth' );
-
-$mech->get_ok( '/authenticate' );
-$mech->content_contains( 'wilfred' );
-
-$mech->get_ok( '/leaking_users' );
-$mech->content_contains( '' );
+# Make sure that both users' sessions identify the logged-in user correctly.
+$yanick_mech->get_ok( '/leaking_users' );
+$yanick_mech->content_contains( 'yanick' );
+$wilfred_mech->get_ok( '/leaking_users' );
+$wilfred_mech->content_contains( 'wilfred' );
 
 done_testing();
 
