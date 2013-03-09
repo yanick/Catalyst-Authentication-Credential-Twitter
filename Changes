@@ -1,43 +1,48 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
-{{$NEXT}}
-  [API CHANGES]
-  * twitter() now needs to be passed C<$c>.
+1.0.0 2013-03-09
+ [API CHANGES]
+ - twitter() now needs to be passed C<$c>.
 
-  [BUG FIXES]
-  * Session infos could get mixed up. (GH#2, reported by Jason McIntosh)
-
-0.03001   2011-11-22
-  [BUG FIXES]
-  - Add 'Catalyst::Plugin::Session::PerUser' to the list of dependencies.
-
-0.03000   2011-11-14
-  [ENHANCEMENTS]
-    - change get_authorization_url() for get_authentication_url(), which
-bypass the authorize page if the user has already authorized the app.
-    (thanks to Francoise Dehinbo for the suggestion)
-
-  [BUG FIXES]
-    - Ensure that authenticate() doesn't explode if store is not DBIx::Class.
-
-  [DOCUMENTATION]
-    - Spell out limitation with the stores.
-
-0.02002   2011-11-11
  [BUG FIXES]
-    - Check if Catalyst::Plugin::Session::PerUser is active on
-        first use, and die with a meaningful message if it's not. [RT66543]
+ - Session infos could get mixed up. (GH#2, reported by Jason McIntosh)
+
+ [STATISTICS]
+ - code churn: 6 files changed, 78 insertions(+), 31 deletions(-)
+
+0.03001 2011-11-22
+ [BUG FIXES]
+ - Add 'Catalyst::Plugin::Session::PerUser' to the list of dependencies.
+
+0.03000 2011-11-14
+ [BUG FIXES]
+ - Ensure that authenticate() doesn't explode if store is not DBIx::Class.
+
+ [DOCUMENTATION]
+ - Spell out limitation with the stores.
+
+ [ENHANCEMENTS]
+ - change get_authorization_url() for get_authentication_url(), which
+ - bypass the authorize page if the user has already authorized the app.
+ - (thanks to Francoise Dehinbo for the suggestion)
+
+0.02002 2011-11-11
+ [BUG FIXES]
+ - Check if Catalyst::Plugin::Session::PerUser is active on first use, and
+   die with a meaningful message if it's not. [RT66543]
 
 0.02001 2011-04-17
-    - Don't have the test fail if WWW::Test::Catalyst::Mechanized is not installed.
+ - Don't have the test fail if WWW::Test::Catalyst::Mechanized is not
+   installed.
 
 0.02000 2011-04-17
-    - Break the authentication process in two
-    - Cleaned up subversion files.
-    - Add some tests.
+ - Break the authentication process in two
+ - Cleaned up subversion files.
+ - Add some tests.
 
 0.01001 2009-12-06
-	- Share access_tokens in session for registration
+ - Share access_tokens in session for registration
 
-0.01000	2009-12-06
-	- Initial release
+0.01000 2009-12-06
+ - Initial release
+

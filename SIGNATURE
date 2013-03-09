@@ -1,0 +1,45 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 7b6d35f82e9cf9ac34f815b45fcddfe3c92c42ce AUTHOR_PLEDGE
+SHA1 00040dd14fef6d74c55c8c4ff92b8b28452a434c Build.PL
+SHA1 63ff75b681a7cdf7bf7de5b59f5e0ea606502684 Changes
+SHA1 334c033951ccf720e409dddbc135a8aac05c9c14 INSTALL
+SHA1 c25d00ba85ab751f89ecf1f41f60e43e18014316 LICENSE
+SHA1 5df18450a7fde697ec2ea6cb8f54f9e87ee7af3b MANIFEST
+SHA1 0bdac46fa4a9208601af674a4a6b91d3dc06bb66 META.json
+SHA1 0bf348b7904c363a98ca33db37e560d735f0f542 META.yml
+SHA1 522fb8b196ded535fb9fa597bb42fca3732681a9 README
+SHA1 fd7a62bc2ed812eea151a0a741ae2a206c3452e5 README.mkdn
+SHA1 1f09a7460607dba778b774db21e0485a4ece702b lib/Catalyst/Authentication/Credential/Twitter.pm
+SHA1 3cbe905b92fbc69d59a06031d5ce6c837b352aa2 t/00-compile.t
+SHA1 bfd6f27bcc47726754f81f7f02771e833995a4c2 t/000-report-versions-tiny.t
+SHA1 39becf9564fd91fa0674530f8c1c248a29b86015 t/02pod.t
+SHA1 e923679a1bbd8eb8f727e46f5906af25de27ec97 t/03podcoverage.t.disabled
+SHA1 f50a5b33841b3f5184e4b012b506e96b2dc64e29 t/basic_app.t
+SHA1 fef3bbb597e3a0344843ecf194b9423881050b1b t/lib/TestApp.pm
+SHA1 e71ef08a355a1c7d864a380f3354e1dee30fd1f6 t/lib/TestApp/Controller/Root.pm
+SHA1 a507499eb734aefb423d06c91e941bf1020ccddc t/lib/TestApp2.pm
+SHA1 ba8c2123a974845cda80a7bc651407b3060a56dc t/lib/TestApp2/Controller/Root.pm
+SHA1 913f8dba0ebfbdc2754452c2c75649b716bff22c t/no_per_user.t
+SHA1 ec3f84bfd7a9ce3246e7592f4134100c6b5ce02b xt/release/unused-vars.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAlE7xgsACgkQ34Hwf+GwC4zHeACaAhJWHAXd93wb9CpF7eMYFA0o
+/IYAoM9zWNvQOY2EI5rKEebQj9xHip9N
+=T5En
+-----END PGP SIGNATURE-----
