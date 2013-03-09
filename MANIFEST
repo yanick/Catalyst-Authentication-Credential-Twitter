@@ -11,7 +11,7 @@ README.mkdn
 SIGNATURE
 lib/Catalyst/Authentication/Credential/Twitter.pm
 t/00-compile.t
-t/000-report-versions.t
+t/000-report-versions-tiny.t
 t/02pod.t
 t/03podcoverage.t.disabled
 t/basic_app.t
@@ -20,3 +20,4 @@ t/lib/TestApp/Controller/Root.pm
 t/lib/TestApp2.pm
 t/lib/TestApp2/Controller/Root.pm
 t/no_per_user.t
+xt/release/unused-vars.t

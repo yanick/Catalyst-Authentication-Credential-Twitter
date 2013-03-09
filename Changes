@@ -1,6 +1,11 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
 {{$NEXT}}
+  [API CHANGES]
+  * twitter() now needs to be passed C<$c>.
+
+  [BUG FIXES]
+  * Session infos could get mixed up. (GH#2, reported by Jason McIntosh)
 
 0.03001   2011-11-22
   [BUG FIXES]

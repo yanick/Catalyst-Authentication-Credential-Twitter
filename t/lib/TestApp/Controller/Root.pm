@@ -35,4 +35,9 @@ sub authenticate :Path('/authenticate') {
     $c->res->body( $res->{twitter_user_id} );
 }
 
+sub leaking_users :Path('/leaking_users') {
+    my ( $self, $c ) = @_;
+    $c->res->body($c->get_auth_realm('twitter')->credential->twitter_user($c)->{id});
+}
+
 1;
