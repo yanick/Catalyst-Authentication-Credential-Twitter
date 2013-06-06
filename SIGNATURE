@@ -1,0 +1,46 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 10b8bcbe03d0cf6855794443dadcf339c68d6ad7 AUTHOR_PLEDGE
+SHA1 462ed51798f96ff61cae6c46342687755975c274 Build.PL
+SHA1 7d567583c92e248d222ce1954559536f530ecbda CONTRIBUTORS
+SHA1 9639207c1a56f6454b2fc044662e634345dbff99 Changes
+SHA1 334c033951ccf720e409dddbc135a8aac05c9c14 INSTALL
+SHA1 c25d00ba85ab751f89ecf1f41f60e43e18014316 LICENSE
+SHA1 fee6364dff4b438f14d9260e3ae19c47cb75ffb0 MANIFEST
+SHA1 adc7cd0bea15c34cb242d426fc1764cc0e4ded78 META.json
+SHA1 055456e9527f1e2e3ba01b784862fc47b33c55f0 META.yml
+SHA1 cfed4748367a31efee93b07d89d9af06d097a80d README
+SHA1 44042094ab964e8b161f874ac64e43b23c0c1400 README.mkdn
+SHA1 c91868df2b3a1a988b2980c2f14dcd56d7889af8 lib/Catalyst/Authentication/Credential/Twitter.pm
+SHA1 3cbe905b92fbc69d59a06031d5ce6c837b352aa2 t/00-compile.t
+SHA1 6a43a0df9ed0ee3fd538a0bfdfd0444c50a73e8f t/000-report-versions-tiny.t
+SHA1 39becf9564fd91fa0674530f8c1c248a29b86015 t/02pod.t
+SHA1 e923679a1bbd8eb8f727e46f5906af25de27ec97 t/03podcoverage.t.disabled
+SHA1 f50a5b33841b3f5184e4b012b506e96b2dc64e29 t/basic_app.t
+SHA1 fef3bbb597e3a0344843ecf194b9423881050b1b t/lib/TestApp.pm
+SHA1 e71ef08a355a1c7d864a380f3354e1dee30fd1f6 t/lib/TestApp/Controller/Root.pm
+SHA1 a507499eb734aefb423d06c91e941bf1020ccddc t/lib/TestApp2.pm
+SHA1 ba8c2123a974845cda80a7bc651407b3060a56dc t/lib/TestApp2/Controller/Root.pm
+SHA1 913f8dba0ebfbdc2754452c2c75649b716bff22c t/no_per_user.t
+SHA1 ec3f84bfd7a9ce3246e7592f4134100c6b5ce02b xt/release/unused-vars.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAlGwtoQACgkQ34Hwf+GwC4ySgACeJUzL/o4ulDLytSECNOTkkCSS
+QfkAoOtz6E4S/Vs6NwCMuMfqZCc2HauW
+=gi2u
+-----END PGP SIGNATURE-----
