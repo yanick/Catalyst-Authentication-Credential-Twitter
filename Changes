@@ -1,6 +1,8 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
 {{$NEXT}}
+  [API CHANGES]
+  * Using the REST::APIv1_1 trait of Net::Twitter. 
 
 1.0.0     2013-03-09
   [API CHANGES]
