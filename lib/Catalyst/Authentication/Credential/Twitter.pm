@@ -47,7 +47,7 @@ sub new {
 
     # Create a Net::Twitter instance
     $self->_twitter(Net::Twitter->new({ 
-		'traits'        	=> ['API::REST', 'OAuth'],
+		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
 		'consumer_key' 		=> $self->consumer_key, 
         'consumer_secret'	=> $self->consumer_secret,
 	}));
