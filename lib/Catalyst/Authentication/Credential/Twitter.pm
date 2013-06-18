@@ -69,9 +69,9 @@ sub authenticate_twitter {
 	my $access_token_secret = $c->user_session->{'access_token_secret'};
 
     # Create a Net::Twitter instance
-    $self->_twitter(Net::Twitter->new({ 
-		'traits'        	=> ['API::REST', 'OAuth'],
-		'consumer_key' 		=> $self->consumer_key, 
+    $self->_twitter(Net::Twitter->new({
+		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
+		'consumer_key' 		=> $self->consumer_key,
         'consumer_secret'	=> $self->consumer_secret,
 	}));
 
@@ -138,14 +138,14 @@ sub authenticate {
     return $user_obj;
 
 }
-    
+
 sub authenticate_twitter_url {
     my ($self, $c) = @_;
 
     # Create a Net::Twitter instance
-    $self->_twitter(Net::Twitter->new( 
-		'traits'        	=> ['API::REST', 'OAuth'],
-		'consumer_key' 		=> $self->consumer_key, 
+    $self->_twitter(Net::Twitter->new(
+		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
+		'consumer_key' 		=> $self->consumer_key,
         'consumer_secret'	=> $self->consumer_secret,
 	));
 

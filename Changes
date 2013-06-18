@@ -4,6 +4,8 @@ Revision history for Catalyst-Authentication-Credential-Twitter
  [API CHANGES]
 
  [BUG FIXES]
+ - Requiring the API::RESTv1_1 trait on every Net::Twitter object created.
+   (GH#3, Jason McIntosh)
 
  [DOCUMENTATION]
 
