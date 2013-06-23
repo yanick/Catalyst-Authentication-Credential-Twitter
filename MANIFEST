@@ -16,6 +16,7 @@ t/000-report-versions-tiny.t
 t/02pod.t
 t/03podcoverage.t.disabled
 t/basic_app.t
+t/fail_callback.t
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Root.pm
 t/lib/TestApp2.pm

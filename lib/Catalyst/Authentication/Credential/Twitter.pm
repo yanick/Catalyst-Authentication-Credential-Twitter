@@ -59,7 +59,8 @@ sub authenticate_twitter {
     my ( $self, $c ) = @_;
 
 	if (!$c->user_session->{'request_token'} || !$c->user_session->{'request_token_secret'} || !$c->req->params->{'oauth_verifier'}) {
-		die 'no request token present, or no verifier';
+        $c->log->debug('no request token present, or no verifier');
+        return undef;
 	}
 
 	my $token = $c->user_session->{'request_token'};
@@ -111,6 +112,8 @@ sub authenticate {
 
 	unless ($authinfo) {
         $self->authenticate_twitter( $c ) unless $self->twitter_user($c);
+
+        return undef unless $self->twitter_user($c);
 
 		$authinfo = {
 			'twitter_user_id'	=> $self->twitter_user($c)->{id},
@@ -274,7 +277,7 @@ user.
 
 Only performs the twitter authentication. Returns a hashref containing
 the user's information given by Twitter (see C<authenticate()> above for
-the lists of keys returned).
+the lists of keys returned), or undef if the authentication failed.
 
 =head2 twitter_user($c)
 

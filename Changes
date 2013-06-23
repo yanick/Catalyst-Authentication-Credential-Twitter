@@ -4,6 +4,8 @@ Revision history for Catalyst-Authentication-Credential-Twitter
  [API CHANGES]
 
  [BUG FIXES]
+ - authenticate_twitter() was dying if the auth failed. 
+    (RT#86270, reported by yayamamo)
 
  [DOCUMENTATION]
 
