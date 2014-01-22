@@ -1,5 +1,8 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
+ - pass ssl => 1 option to Net::Twitter, to silence deprecation warnings
+   (GH#4, Karen Etheridge)
+
 2.0.1 2013-06-17
  [BUG FIXES]
  - Requiring the API::RESTv1_1 trait on every Net::Twitter object created.
