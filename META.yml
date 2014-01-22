@@ -1,0 +1,49 @@
+---
+abstract: 'Twitter authentication for Catalyst'
+author:
+  - 'Jesse Stay <jesse@staynalive.com>'
+  - 'Yanick Champoux <yanick@cpan.org>'
+build_requires:
+  Catalyst: 0
+  Catalyst::Controller: 0
+  File::Spec: 0
+  IO::Handle: 0
+  IPC::Open3: 0
+  Module::Build: 0.3601
+  Test::More: 0.88
+  lib: 0
+  parent: 0
+  perl: 5.006
+configure_requires:
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.012, CPAN::Meta::Converter version 2.120921'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Catalyst-Authentication-Credential-Twitter
+provides:
+  Catalyst::Authentication::Credential::Twitter:
+    file: lib/Catalyst/Authentication/Credential/Twitter.pm
+    version: v2.0.3
+requires:
+  Catalyst::Exception: 0
+  Catalyst::Plugin::Session::PerUser: 0
+  Class::Accessor::Fast: 0
+  Data::Dumper: 0
+  Net::Twitter: 4.00001
+  base: 0
+  strict: 0
+  warnings: 0
+resources:
+  bugtracker: https://github.com/yanick/Catalyst-Authentication-Credential-Twitter/issues
+  homepage: http://search.cpan.org/dist/Catalyst-Authentication-Credential-Twitter/
+  repository: git://github.com/yanick/Catalyst-Authentication-Credential-Twitter.git
+version: 2.0.3
+x_author_pledge:
+  version: 1
+x_authority: cpan:JESSESTAY
+x_contributors:
+  - 'Jason McIntosh <jmac@appleseed-sc.com>'
+  - 'Karen Etheridge <ether@cpan.org>'
