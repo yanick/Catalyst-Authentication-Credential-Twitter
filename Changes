@@ -4,6 +4,8 @@ Revision history for Catalyst-Authentication-Credential-Twitter
  [API CHANGES]
 
  [BUG FIXES]
+ - pass ssl => 1 option to Net::Twitter, to silence deprecation warnings
+   (GH#4, Karen Etheridge)
 
  [DOCUMENTATION]
 

@@ -50,6 +50,7 @@ sub new {
 		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
 		'consumer_key' 		=> $self->consumer_key, 
         'consumer_secret'	=> $self->consumer_secret,
+		'ssl'				=> 1,
 	}));
 
     return $self;
@@ -74,6 +75,7 @@ sub authenticate_twitter {
 		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
 		'consumer_key' 		=> $self->consumer_key,
         'consumer_secret'	=> $self->consumer_secret,
+		'ssl'				=> 1,
 	}));
 
 	if (!$access_token && !$access_token_secret) {
@@ -150,6 +152,7 @@ sub authenticate_twitter_url {
 		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
 		'consumer_key' 		=> $self->consumer_key,
         'consumer_secret'	=> $self->consumer_secret,
+		'ssl'				=> 1,
 	));
 
     my $uri = $self->_twitter->get_authentication_url( 'callback'	=> $c->config->{'twitter_callback_url'} || $self->callback_url );
