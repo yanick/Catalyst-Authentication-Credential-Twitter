@@ -1,19 +1,12 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
-{{$NEXT}}
- [API CHANGES]
-
+2.0.4 2014-03-11
  [BUG FIXES]
  - Add test dependency for "Catalyst::Plugin::Session::Store::FastMmap".
-    (RT#76678)
-
- [DOCUMENTATION]
-
- [ENHANCEMENTS]
-
- [NEW FEATURES]
+   (RT#76678)
 
  [STATISTICS]
+ - code churn: 2 files changed, 14 insertions(+), 17 deletions(-)
 
 2.0.3 2014-01-21
  [BUG FIXES]
