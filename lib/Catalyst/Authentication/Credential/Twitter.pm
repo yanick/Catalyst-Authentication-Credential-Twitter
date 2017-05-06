@@ -1,6 +1,7 @@
 package Catalyst::Authentication::Credential::Twitter;
+our $AUTHORITY = 'cpan:YANICK';
 # ABSTRACT:  Twitter authentication for Catalyst
-
+$Catalyst::Authentication::Credential::Twitter::VERSION = '2.0.5';
 use strict;
 use warnings;
 use base qw( Class::Accessor::Fast );
@@ -166,6 +167,20 @@ sub authenticate_twitter_url {
 
 1;
 
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+Catalyst::Authentication::Credential::Twitter - Twitter authentication for Catalyst
+
+=head1 VERSION
+
+version 2.0.5
+
 =head1 SYNOPSIS
 
 In MyApp.pm
@@ -329,5 +344,25 @@ Please report bugs to L<http://rt.cpan.org/Ticket/Create.html?Queue=Catalyst-Aut
 Thanks go out Daisuke Murase for writing C::P::A::Credential::Flickr,
 Marc Mims and Chris Thompson for Net::Twitter.
 
-=cut
+=head1 AUTHORS
 
+=over 4
+
+=item *
+
+Jesse Stay <jesse@staynalive.com>
+
+=item *
+
+Yanick Champoux <yanick@cpan.org>
+
+=back
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2009 by Jesse Stay.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
