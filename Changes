@@ -1,6 +1,8 @@
 Revision history for Catalyst-Authentication-Credential-Twitter
 
 {{$NEXT}}
+ - Move dependency to ::FastMmap to 'recommends'. (RT#76678)
+
  [API CHANGES]
 
  [BUG FIXES]

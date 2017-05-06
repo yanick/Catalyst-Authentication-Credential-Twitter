@@ -10,7 +10,6 @@ requires "warnings" => "0";
 on 'test' => sub {
   requires "Catalyst" => "0";
   requires "Catalyst::Controller" => "0";
-  requires "Catalyst::Plugin::Session::Store::FastMmap" => "0";
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::Spec" => "0";
   requires "IO::Handle" => "0";
@@ -23,6 +22,8 @@ on 'test' => sub {
 
 on 'test' => sub {
   recommends "CPAN::Meta" => "2.120900";
+  recommends "Catalyst::Plugin::Session::Store::FastMmap" => "0";
+  recommends "Test::WWW::Mechanize::Catalyst" => "0";
 };
 
 on 'configure' => sub {
