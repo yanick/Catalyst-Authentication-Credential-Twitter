@@ -14,7 +14,7 @@ BEGIN {
 }
 
 use Catalyst::Exception ();
-use Net::Twitter;
+use Twitter::API;
 
 my $check_for_user_session;
 
@@ -46,13 +46,10 @@ sub new {
             Catalyst::Exception->throw("$param not defined") 
     }
 
-    # Create a Net::Twitter instance
-    $self->_twitter(Net::Twitter->new({ 
-		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
-		'consumer_key' 		=> $self->consumer_key, 
-        'consumer_secret'	=> $self->consumer_secret,
-		'ssl'				=> 1,
-	}));
+    # Create a Twitter::API instance
+    $self->_twitter(Twitter::API->new_with_traits( 'traits' => ['Migration', 'ApiMethods','RetryOnError'],
+						   'consumer_key' => $self->consumer_key, 
+						   'consumer_secret'	=> $self->consumer_secret ));
 
     return $self;
 }
@@ -60,53 +57,58 @@ sub new {
 sub authenticate_twitter {
     my ( $self, $c ) = @_;
 
-	if (!$c->user_session->{'request_token'} || !$c->user_session->{'request_token_secret'} || !$c->req->params->{'oauth_verifier'}) {
-        $c->log->debug('no request token present, or no verifier');
-        return undef;
-	}
+    if (!$c->user_session->{'request_token'} || !$c->user_session->{'request_token_secret'} || !$c->req->params->{'oauth_verifier'}) {
+      $c->log->debug('no request token present, or no verifier');
+      return undef;
+    }
+    
+    my $token = $c->user_session->{'request_token'};
+    my $token_secret = $c->user_session->{'request_token_secret'};
+    my $verifier = $c->req->params->{'oauth_verifier'};
+    my $access_token = $c->user_session->{'access_token'};
+    my $access_token_secret = $c->user_session->{'access_token_secret'};
 
-	my $token = $c->user_session->{'request_token'};
-	my $token_secret = $c->user_session->{'request_token_secret'};
-	my $verifier = $c->req->params->{'oauth_verifier'};
-	my $access_token = $c->user_session->{'access_token'};
-	my $access_token_secret = $c->user_session->{'access_token_secret'};
+    # Create a Twitter::API instance
+    $self->_twitter(Twitter::API->new_with_traits( 'traits' => ['Migration', 'ApiMethods','RetryOnError'],
+						   'consumer_key' => $self->consumer_key, 
+						   'consumer_secret'	=> $self->consumer_secret ));
 
     # Create a Net::Twitter instance
-    $self->_twitter(Net::Twitter->new({
-		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
-		'consumer_key' 		=> $self->consumer_key,
-        'consumer_secret'	=> $self->consumer_secret,
-		'ssl'				=> 1,
-	}));
+    # $self->_twitter(Net::Twitter->new({
+    # 		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
+    # 		'consumer_key' 		=> $self->consumer_key,
+    #     'consumer_secret'	=> $self->consumer_secret,
+    # 		'ssl'				=> 1,
+    # 	}));
 
-	if (!$access_token && !$access_token_secret) {
-		$self->_twitter->request_token($token);
-    	$self->_twitter->request_token_secret($token_secret);
-
-		($access_token, $access_token_secret) = $self->_twitter->request_access_token('verifier' => $verifier);
+    if (!$access_token && !$access_token_secret) {
+      $self->_twitter->request_token($token);
+      $self->_twitter->request_token_secret($token_secret);
+      
+      ($access_token, $access_token_secret) = $self->_twitter->request_access_token('verifier' => $verifier);
 		# this is in case we need to register the user after the oauth process
-		$c->user_session->{'access_token'} = $access_token;
-		$c->user_session->{'access_token_secret'} = $access_token_secret;
-	}
-
-	# get the user
-	$self->_twitter->access_token($access_token);
+      $c->user_session->{'access_token'} = $access_token;
+      $c->user_session->{'access_token_secret'} = $access_token_secret;
+    }
+    
+    # get the user
+    $self->_twitter->access_token($access_token);
     $self->_twitter->access_token_secret($access_token_secret);
-
-	my $twitter_user_hash = eval {
-		$self->_twitter->verify_credentials;
-	};
-
-	if ($@ || !$twitter_user_hash) {
-		$c->log->debug("no twitter_user_hash or error: ".$@);
-		return undef;
-	}
-
-	$twitter_user_hash->{'access_token'} = $access_token;
-	$twitter_user_hash->{'access_token_secret'} = $access_token_secret;
-
+    
+    my $twitter_user_hash = eval {
+      $self->_twitter->verify_credentials;
+    };
+    
+    if ($@ || !$twitter_user_hash) {
+      $c->log->debug("no twitter_user_hash or error: ".$@);
+      return undef;
+    }
+    
+    $twitter_user_hash->{'access_token'} = $access_token;
+    $twitter_user_hash->{'access_token_secret'} = $access_token_secret;
+    
     $self->twitter_user( $c, $twitter_user_hash );
-
+    
     return $twitter_user_hash;
 }
 
@@ -148,13 +150,18 @@ sub authenticate {
 sub authenticate_twitter_url {
     my ($self, $c) = @_;
 
-    # Create a Net::Twitter instance
-    $self->_twitter(Net::Twitter->new(
-		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
-		'consumer_key' 		=> $self->consumer_key,
-        'consumer_secret'	=> $self->consumer_secret,
-		'ssl'				=> 1,
-	));
+    # Create a Twitter::API instance
+    $self->_twitter(Twitter::API->new_with_traits( 'traits' => ['Migration', 'ApiMethods','RetryOnError'],
+						   'consumer_key' => $self->consumer_key, 
+						   'consumer_secret'	=> $self->consumer_secret ));
+
+    # # Create a Net::Twitter instance
+    # $self->_twitter(Net::Twitter->new(
+    # 		'traits'        	=> ['API::RESTv1_1', 'OAuth'],
+    # 		'consumer_key' 		=> $self->consumer_key,
+    #     'consumer_secret'	=> $self->consumer_secret,
+    # 		'ssl'				=> 1,
+    # 	));
 
     my $uri = $self->_twitter->get_authentication_url( 'callback'	=> $c->config->{'twitter_callback_url'} || $self->callback_url );
 	$c->user_session->{'request_token'} = $self->_twitter->request_token;
@@ -261,7 +268,7 @@ enough for the Twitter API, I've added one more.
 
 Will not be called by you directly, but will use the configuration you
 provide (see above). Mandatory parameters are C<consumer_key>, C<consumer_secret> and
-C<callback_url>. Note that you can also include C<twitter_consumer_key>, C<twitter_consumer_secret>, and C<twitter_callback_url> as variables in your Catalyst site configuration or yml file and you don't need to pass configuration parameters in your MyApp.pm file.  Please see L<Net::Twitter> for more details on them.
+C<callback_url>. Note that you can also include C<twitter_consumer_key>, C<twitter_consumer_secret>, and C<twitter_callback_url> as variables in your Catalyst site configuration or yml file and you don't need to pass configuration parameters in your MyApp.pm file.  Please see L<Twitter::API> for more details on them.
 
 =head2 authenticate_twitter_url( $c )
 
